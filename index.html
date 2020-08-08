@@ -9,18 +9,45 @@
 </head>
 <body>
     <h1>LET'S PLAY BLACKJACK</h1>
-    <h2>Dealer</h2>
-    
-    <h2>Player</h2>
-    <h2>Player Total = </h2>
-    <h2>Player Winnings = </h2>
-    <h2 id="player-score">0</h2>
+    <h2>Dealer Total:</h2>
 
-    <div class="dealer"></div>
+    <div class="flex-container flex-column">
+        <div class="flex-container noflex-wrap" id="board">
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        
+    </div>
+    </div>
+
+    <div class="game">
+        <div class="game">
+               <h2>Player</h2>
+       
+       <div class="game-body">
+              <div class="game-options">
+               <input type="button" id="btnStart" class="btn" value="Deal" onclick="startblackjack()">
+               <input type="button" class="btn" value="Hit Me" onclick="hitMe()">
+               <input type="button" class="btn" value="Stay" onclick="stay()">
+               </div>
+       
+                   <div class="status" id="status"></div>
+       
+               <div id="deck" class="deck">
+                   <div id="deckcount"></div>
+               </div>
+       
+               <div id="players" class="players">
+               </div>
+       
+               <div class="clear"></div>
+       </div>
+   </div>
+    <!-- <h2>Player Total:</h2>
+
     <button>Deal</button>
     <button>Hit</button>
     <button>Stay</button>
-    <button>New Game</button>
-
+    <button>New Game</button> -->
 </body>
 </html>
