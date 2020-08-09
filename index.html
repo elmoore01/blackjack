@@ -3,51 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="css/style.css" rel="stylesheet" type="text/css">
             <script defer src="js/main.js"></script>
     <title>BLACKJACK</title>
-</head>
+    </head>
 <body>
-    <h1>LET'S PLAY BLACKJACK</h1>
-    <h2>Dealer Total:</h2>
-
-    <div class="flex-container flex-column">
-        <div class="flex-container noflex-wrap" id="board">
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        
-    </div>
-    </div>
-
-    <div class="game">
-        <div class="game">
-               <h2>Player</h2>
-       
-       <div class="game-body">
-              <div class="game-options">
-               <input type="button" id="btnStart" class="btn" value="Deal" onclick="startblackjack()">
-               <input type="button" class="btn" value="Hit Me" onclick="hitMe()">
-               <input type="button" class="btn" value="Stay" onclick="stay()">
-               </div>
-       
-                   <div class="status" id="status"></div>
-       
-               <div id="deck" class="deck">
-                   <div id="deckcount"></div>
-               </div>
-       
-               <div id="players" class="players">
-               </div>
-       
-               <div class="clear"></div>
-       </div>
-   </div>
-    <!-- <h2>Player Total:</h2>
-
-    <button>Deal</button>
-    <button>Hit</button>
-    <button>Stay</button>
-    <button>New Game</button> -->
+    <main> 
+        <h1>LET'S PLAY BLACKJACK</h1>
+        <h2 id="computer-score">0</h2>
+        <h2 id="player-score">0</h2>
+        <div id="player-result">
+			<img src="">
+		</div>
+		<div id="computer-result">
+			<img src="">
+		</div>
+        <button>Deal</button>
+        <button>Hit</button>
+        <button>Stay</button>
+        <button>New Game</button>
 </body>
 </html>
