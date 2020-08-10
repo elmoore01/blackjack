@@ -8,9 +8,43 @@
             <script defer src="js/main.js"></script>
     <title>BLACKJACK</title>
     </head>
+    <style>
+        td {
+            border: 2px solid black;
+            margin: 40px;
+            padding: 20px;
+        }
+    </style>
 <body>
     <main> 
         <h1>LET'S PLAY BLACKJACK</h1>
+        <p>Click "Deal" to Start</p>
+        <button onclick="myStart()">Deal</button>
+        <button onclick="myHit()">Hit</button>
+<script>
+function myStart() {
+  var x = document.createElement("TABLE");
+  x.setAttribute("id", "myTable");
+  document.body.appendChild(x);
+
+  var y = document.createElement("TR");
+  y.setAttribute("id", "myTr");
+  document.getElementById("myTable").appendChild(y);
+
+  var z = document.createElement("TD");
+  var t = document.createTextNode("test");
+  z.appendChild(t);
+  document.getElementById("myTr").appendChild(z);
+}
+</script>
+<table>
+    <tr>
+        <th>Player</th>
+        <th>Dealer</th>
+    </tr>
+<table class="center">
+    
+</table>
         <h2 id="computer-score">0</h2>
         <h2 id="player-score">0</h2>
         <div id="player-result">
@@ -19,7 +53,6 @@
 		<div id="computer-result">
 			<img src="">
 		</div>
-        <button>Deal</button>
         <button>Hit</button>
         <button>Stay</button>
         <button>New Game</button>
