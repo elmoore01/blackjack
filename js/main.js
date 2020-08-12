@@ -107,6 +107,52 @@ function checkScore() {
 
 function render() {
     checkScore();
+    while (playerCardsEl.firstChild) {
+        let child = playerCardsEl.childNodes[0]
+        playerCardsEl.removeChild(child)
+    }
+    while (dealerCardsEl.firstChild) {
+        let child = dealerCardsEl.childNodes[0]
+        dealerCardsEl.removeChild(child)
+    }
+    for (let i = 0; i < player.length; i++) {
+        let c = document.createElement('div')
+        let currentValue = ''
+        if('AKQJ'.includes(player[i].Value)) {
+            currentValue += player[i].Value
+        }
+        else {
+            currentValue += 'r'
+            if(player[i].Value.toString().length > 1) {
+                currentValue += player[i].Value
+            }
+            else {
+                currentValue += `0${player[i].Value}`
+            } 
+        }
+
+        c.className = `card ${player[i].Suit} ${currentValue}`
+        playerCardsEl.appendChild(c) 
+    }
+    for (let i = 0; i < dealer.length; i++) {
+        let c = document.createElement('div')
+        let currentValue = ''
+        if('AKQJ'.includes(dealer[i].Value)) {
+            currentValue += dealer[i].Value
+        }
+        else {
+            currentValue += 'r'
+            if(dealer[i].Value.toString().length > 1) {
+                currentValue += dealer[i].Value
+            }
+            else {
+                currentValue += `0${dealer[i].Value}`
+            } 
+        }
+
+        c.className = `card ${dealer[i].Suit} ${currentValue}`
+        dealerCardsEl.appendChild(c) 
+    }
 }
 
 function hit() {
@@ -137,6 +183,7 @@ function checkWinner() {
     console.log(playerScore, dealerScore)
     
     if (playerScore === dealerScore) {
+        msgEl.textContent = "It's a Tie"
         console.log('Its a tie');
     }
     else if (playerScore === 21) {
