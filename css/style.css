@@ -4,7 +4,6 @@
 
 main {
   width: 100vw;
-  height: 100vw;
   display: grid;
   grid-template-columns: [first] 4fr [line2] 4fr [line3] 4fr [end];
   grid-template-rows: [topLine] 45% [secondLine] 45% thirdLine 10% [bottomline];

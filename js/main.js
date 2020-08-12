@@ -30,6 +30,7 @@ document.getElementById('stand').addEventListener('click', stay);
 
 /*----- functions -----*/
 
+
 function createDeck() {
     deck = new Array();
     for (let i = 0; i < values.length; i++) {
@@ -89,13 +90,14 @@ function checkScore() {
 
 function render() {
     checkScore();
-    if(gameInPlay==false) {
+    if (gameInPlay == false){
         checkWinner();
     }
 }
 
 function hit() {
     dealToPlayer();
+    dealToDealer();
     render();
 }
 
@@ -110,13 +112,23 @@ function stay() {
 }
 
 function checkWinner() {
-    if(playerScore > dealerScore) {
-        console.log('player wins')
+    
+    console.log(playerScore, dealerScore)
+    
+    if (playerScore === dealerScore) {
+        console.log('Its a tie');
     }
-    else if (dealerScore > playerScore) {
-        console.log('dealer wins')
+    else if (playerScore === 21) {
+        console.log('Player Blackjack');
     }
-    else {
-        console.log('tie')
+    else if (dealerScore === 21) {
+        console.log('Dealer Blackjack');
     }
+    else if(playerScore < 21 && dealerScore > 21 || (playerScore < 21 && playerScore > dealerScore)) {
+        console.log('Player Wins');
+    }
+    else if(dealerScore < 21 && playerScore > 21 || (dealerScore < 21 && dealerScore > playerScore)) {
+        console.log('Dealer Wins');
+    }
+    checkScore(); 
 }
