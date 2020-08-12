@@ -28,6 +28,7 @@ const bankrollEl = document.getElementById('bankroll');
 document.getElementById('hit').addEventListener('click', hit);
 document.getElementById('stand').addEventListener('click', stay);
 document.getElementById('deal').addEventListener('click', init);
+document.getElementById('restart').addEventListener('click', init);
 
 /*----- functions -----*/
 
@@ -75,6 +76,10 @@ function checkForBlackjacks() {
     return null;
 }
 function init() {
+    playerDone = false;
+    document.getElementById('hit').addEventListener('click', hit);
+    document.getElementById('stand').addEventListener('click', stay);
+    document.getElementById('deal').addEventListener('click', init);
     createDeck();
     shuffle();
     deal();
@@ -92,6 +97,9 @@ function checkScore() {
         dealerScore += dealer[i].Weight;
     }
     if(playerDone || playerScore >= 21) {
+        document.getElementById('hit').removeEventListener('click', hit);
+        document.getElementById('stand').removeEventListener('click', stay);
+        document.getElementById('deal').removeEventListener('click', init);    
         console.log('Running Checkscore, Player done');
         checkWinner();
     }
