@@ -27,6 +27,7 @@ let gameInPlay = true;
 
 document.getElementById('hit').addEventListener('click', hit);
 document.getElementById('stand').addEventListener('click', stay);
+document.getElementById('dealHand').addEventListener('click', dealToDealer);
 
 /*----- functions -----*/
 
@@ -132,3 +133,27 @@ function checkWinner() {
     }
     checkScore(); 
 }
+
+// Test to require click on deal to start game:
+
+// const dealH = document.querySelector('deal');
+// dealH.addEventListener('click', dealHands);
+
+// function init() {
+//     createDeck();
+//     shuffle();
+//     dealerScore = null;
+//     playerScore = null;
+// }
+
+// init();
+
+// deal.onclick function dealHands() {
+//     dealToPlayer();
+//     dealToPlayer();
+//     dealToDealer();
+//     dealToDealer();
+//     render();
+// }
+
+// dealHands();

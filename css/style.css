@@ -34,8 +34,8 @@ body {
 .btn {
   margin: 10px;
   font-size: 18px;
-  padding: 7px;
-  background-color: black;
+  padding: 4px;
+  background-color: grey;
   border-radius: 20px;
   border-width: 5px;
   color: gold;
@@ -43,8 +43,7 @@ body {
   align-content: center;
 }
 
-.button:hover {
-  background-color: black;
+.btn:hover {
   color: white;
 }
 
