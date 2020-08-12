@@ -4,30 +4,30 @@ const suits = ["spades", "diamonds", "clubs", "hearts"];
 const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 let deck = new Array();
 
-let running = false;
-let blackjack = false;
-let deal;
-let player = [];
-let dealer = [];
 /*----- app's state (variables) -----*/
 
-let hand = [];
+let winner;  //null=handInProgress, P=player D=dealer, T=Tie, PBJ=playerBlackJack, DBJ=dealerBlackjack
+let player = [];
+let dealer = [];
 let wager = 0;
 let cash = 1000;
-let bank = 0;
-let element = '';
 let playerScore = 0;
 let dealerScore = 0;
-let gameInPlay = true;
+let playerDone = false;
 
 /*----- cached element references -----*/
 
+const dealerCardsEl = document.getElementById('dealer-cards');
+const playerCardsEl = document.getElementById('player-cards');
+const msgEl = document.getElementById('msg');
+const wagerEl = document.getElementById('wager');
+const bankrollEl = document.getElementById('bankroll');
 
 /*----- event listeners -----*/
 
 document.getElementById('hit').addEventListener('click', hit);
 document.getElementById('stand').addEventListener('click', stay);
-document.getElementById('dealHand').addEventListener('click', dealToDealer);
+document.getElementById('deal').addEventListener('click', init);
 
 /*----- functions -----*/
 
@@ -58,26 +58,30 @@ function shuffle() {
     }
 }
 
-function dealToDealer() {
+function deal() {
+    // Reminder, need to reshuffle deck
 
+    dealer = [];
+    player = [];
     dealer.push(deck.pop())
-}
-
-function dealToPlayer() {
+    dealer.push(deck.pop())
     player.push(deck.pop())
+    player.push(deck.pop())
+    // check for blackjacks
+    winner = checkForBlackjacks();
 }
 
+function checkForBlackjacks() {
+    return null;
+}
 function init() {
     createDeck();
     shuffle();
-    dealToPlayer();
-    dealToPlayer();
-    dealToDealer();
-    dealToDealer();
+    deal();
     render();
 }
 
-init();
+// init();
 
 function checkScore() {
     playerScore=0, dealerScore=0;
@@ -87,27 +91,35 @@ function checkScore() {
     for (let i = 0; i < dealer.length; i++) {
         dealerScore += dealer[i].Weight;
     }
-}
-
-function render() {
-    checkScore();
-    if (gameInPlay == false){
+    if(playerDone || playerScore >= 21) {
+        console.log('Running Checkscore, Player done');
         checkWinner();
     }
 }
 
+function render() {
+    checkScore();
+}
+
 function hit() {
-    dealToPlayer();
-    dealToDealer();
-    render();
+    checkScore();
+    if(playerScore >= 21) {
+    console.log('hitting playerScore above 21')
+
+    playerDone=true;
+    }
+    else {
+        player.push(deck.pop())
+    }
+       render();
 }
 
 function stay() {
     while (dealerScore < 15) {
-        dealToDealer();
+        dealer.push(deck.pop())
         checkScore();
     }
-    gameInPlay=false;
+    playerDone=true;
 
     render();
 }
@@ -131,29 +143,11 @@ function checkWinner() {
     else if(dealerScore < 21 && playerScore > 21 || (dealerScore < 21 && dealerScore > playerScore)) {
         console.log('Dealer Wins');
     }
-    checkScore(); 
+    else if(playerScore > 21) {
+        console.log('Player Busts, Dealer Wins')
+    }
+    else if(dealerScore > 21) {
+        console.log('Dealer Busts, Player Wins')
+    }
+    // checkScore(); 
 }
-
-// Test to require click on deal to start game:
-
-// const dealH = document.querySelector('deal');
-// dealH.addEventListener('click', dealHands);
-
-// function init() {
-//     createDeck();
-//     shuffle();
-//     dealerScore = null;
-//     playerScore = null;
-// }
-
-// init();
-
-// deal.onclick function dealHands() {
-//     dealToPlayer();
-//     dealToPlayer();
-//     dealToDealer();
-//     dealToDealer();
-//     render();
-// }
-
-// dealHands();
