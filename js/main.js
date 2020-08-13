@@ -158,7 +158,6 @@ function render() {
 function hit() {
     checkScore();
     if(playerScore >= 21) {
-    console.log('hitting playerScore above 21')
 
     playerDone=true;
     }
@@ -169,7 +168,7 @@ function hit() {
 }
 
 function stay() {
-    while (dealerScore < 15) {
+    while (dealerScore < 16) {
         dealer.push(deck.pop())
         checkScore();
     }
@@ -180,29 +179,25 @@ function stay() {
 
 function checkWinner() {
     
-    console.log(playerScore, dealerScore)
-    
     if (playerScore === dealerScore) {
         msgEl.textContent = "It's a Tie"
-        console.log('Its a tie');
     }
     else if (playerScore === 21) {
-        console.log('Player Blackjack');
+        msgEl.textContent = "Player Blackjack"
     }
     else if (dealerScore === 21) {
-        console.log('Dealer Blackjack');
+        msgEl.textContent = "Dealer Blackjack"
     }
     else if(playerScore < 21 && dealerScore > 21 || (playerScore < 21 && playerScore > dealerScore)) {
-        console.log('Player Wins');
+        msgEl.textContent = "Player Wins"
     }
     else if(dealerScore < 21 && playerScore > 21 || (dealerScore < 21 && dealerScore > playerScore)) {
-        console.log('Dealer Wins');
+        msgEl.textContent = "Dealer Wins"
     }
     else if(playerScore > 21) {
-        console.log('Player Busts, Dealer Wins')
+        msgEl.textContent = "Player Busts, Dealer Win"
     }
     else if(dealerScore > 21) {
-        console.log('Dealer Busts, Player Wins')
+        msgEl.textContent = "Dealer Busts, Player Wins"
     }
-    // checkScore(); 
 }
