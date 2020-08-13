@@ -84,6 +84,9 @@ function init() {
     createDeck();
     shuffle();
     deal();
+    msgEl.innerText = '';
+    playerCardsEl.innerHTML = '';
+    dealerCardsEl.innerHTML = '';
     render();
 }
 
@@ -111,6 +114,7 @@ function checkScore() {
 
 function render() {
     checkScore();
+    playerScoreEl.innerText= playerScore;
     while (playerCardsEl.firstChild) {
         let child = playerCardsEl.childNodes[0]
         playerCardsEl.removeChild(child)
