@@ -6,7 +6,7 @@ let deck = new Array();
 
 /*----- app's state (variables) -----*/
 
-let winner; 
+let winner;
 let dealer = [];
 let wager = 0;
 let cash = 1000;
@@ -91,30 +91,30 @@ function init() {
 }
 
 function checkScore() {
-    playerScore=0, dealerScore=0;
+    playerScore = 0, dealerScore = 0;
     for (let i = 0; i < player.length; i++) {
         playerScore += player[i].Weight;
     }
     for (let i = 0; i < dealer.length; i++) {
         dealerScore += dealer[i].Weight;
     }
-    if(playerDone || playerScore >= 21) {
+    if (playerDone || (playerScore >= 21 && dealerDone)) {
         document.getElementById('hit').removeEventListener('click', hit);
         document.getElementById('stand').removeEventListener('click', stay);
-        document.getElementById('deal').removeEventListener('click', init);    
+        document.getElementById('deal').removeEventListener('click', init);
         checkWinner();
     }
-    if(dealerDone || dealerScore >= 21) {
+    if (dealerDone || dealerScore >= 21) {
         document.getElementById('hit').removeEventListener('click', hit);
         document.getElementById('stand').removeEventListener('click', stay);
-        document.getElementById('deal').removeEventListener('click', init);    
+        document.getElementById('deal').removeEventListener('click', init);
         checkWinner();
     }
 }
 
 function render() {
     checkScore();
-    playerScoreEl.innerText= playerScore;
+    playerScoreEl.innerText = playerScore;
     while (playerCardsEl.firstChild) {
         let child = playerCardsEl.childNodes[0]
         playerCardsEl.removeChild(child)
@@ -126,53 +126,68 @@ function render() {
     for (let i = 0; i < player.length; i++) {
         let c = document.createElement('div')
         let currentValue = ''
-        if('AKQJ'.includes(player[i].Value)) {
+        if ('AKQJ'.includes(player[i].Value)) {
             currentValue += player[i].Value
         }
         else {
             currentValue += 'r'
-            if(player[i].Value.toString().length > 1) {
+            if (player[i].Value.toString().length > 1) {
                 currentValue += player[i].Value
             }
             else {
                 currentValue += `0${player[i].Value}`
-            } 
+            }
         }
 
         c.className = `card large ${player[i].Suit} ${currentValue}`
-        playerCardsEl.appendChild(c) 
+        playerCardsEl.appendChild(c)
     }
     for (let i = 0; i < dealer.length; i++) {
         let c = document.createElement('div')
         let currentValue = ''
-        if('AKQJ'.includes(dealer[i].Value)) {
-            currentValue += dealer[i].Value
-        }
-        else {
-            currentValue += 'r'
-            if(dealer[i].Value.toString().length > 1) {
+
+        if (i || playerDone) {
+
+
+            if ('AKQJ'.includes(dealer[i].Value)) {
                 currentValue += dealer[i].Value
             }
             else {
-                currentValue += `0${dealer[i].Value}`
-            } 
+                currentValue += 'r'
+                if (dealer[i].Value.toString().length > 1) {
+                    currentValue += dealer[i].Value
+                }
+                else {
+                    currentValue += `0${dealer[i].Value}`
+                }
+            }
         }
-
+        else {
+            currentValue = 'back';
+        }
         c.className = `card large ${dealer[i].Suit} ${currentValue}`
-        dealerCardsEl.appendChild(c) 
+        dealerCardsEl.appendChild(c)
     }
 }
 
 function hit() {
     checkScore();
-    if(playerScore >= 21) {
+    if (playerScore == 21) {
+        while (dealerScore < 16) {
+            dealer.push(deck.pop())
+            checkScore();
+        }
+        dealerDone = true;
+        checkScore();
+    }
+    if (playerScore >= 21) {
 
-    playerDone=true;
+        playerDone = true;
     }
     else {
         player.push(deck.pop())
     }
-       render();
+    render();
 }
 
 function stay() {
@@ -180,32 +195,32 @@ function stay() {
         dealer.push(deck.pop())
         checkScore();
     }
-    playerDone=true;
+    playerDone = true;
 
     render();
 }
 
 function checkWinner() {
-    
+
     if (playerScore === dealerScore) {
         msgEl.textContent = "It's a Tie"
     }
-    else if (playerScore === 21) {
+    else if (playerScore === 21 && playerCardsEl.length < 3) {
         msgEl.textContent = "Player Blackjack"
     }
-    else if (dealerScore === 21) {
+    else if (dealerScore === 21 && dealerCardsEl.length < 3) {
         msgEl.textContent = "Dealer Blackjack"
     }
-    else if(playerScore < 21 && dealerScore > 21 || (playerScore < 21 && playerScore > dealerScore)) {
+    else if (playerScore <= 21 && dealerScore > 21 || (playerScore <= 21 && playerScore > dealerScore)) {
         msgEl.textContent = "Player Wins"
     }
-    else if(dealerScore < 21 && playerScore > 21 || (dealerScore < 21 && dealerScore > playerScore)) {
+    else if (dealerScore <= 21 && playerScore > 21 || (dealerScore <= 21 && dealerScore > playerScore)) {
         msgEl.textContent = "Dealer Wins"
     }
-    else if(playerScore > 21) {
+    else if (playerScore > 21) {
         msgEl.textContent = "Player Busts, Dealer Wins"
     }
-    else if(dealerScore > 21) {
+    else if (dealerScore > 21) {
         msgEl.textContent = "Dealer Busts, Player Wins"
     }
 }

@@ -14,13 +14,15 @@ main {
   justify-items: center;
   grid-template-columns: 25% 50% 25%;
   grid-template-rows: 3fr 1fr 3fr 1fr;
+  /* background-image: url(https://www.lifeprepacademy.org/wp-content/uploads/2020/08/BlackjackBkgrd.jpg);
+  background-repeat: no-repeat; */
 }
-
+/* 
 .container {
   justify-items: center;
   align-items: center;
   position: absolute;
-}
+} */
 
 #msg {
   grid-column: span 3;
