@@ -11,7 +11,7 @@ body {
 
 main {
   display: grid;
-  justify-self: center;
+  justify-items: center;
   grid-template-columns: 25% 50% 25%;
   grid-template-rows: 3fr 1fr 3fr 1fr;
 }
@@ -36,8 +36,7 @@ main {
 .button-group {
   grid-column: 2;
   display: flex;
-  border: 1px solid black;
-  flex-direction: row;
+  /* flex-direction: row; */
   padding: 10px;
   text-align: center;
 }

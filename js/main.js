@@ -6,17 +6,19 @@ let deck = new Array();
 
 /*----- app's state (variables) -----*/
 
-let winner;  //null=handInProgress, P=player D=dealer, T=Tie, PBJ=playerBlackJack, DBJ=dealerBlackjack
-let player = [];
+let winner; 
 let dealer = [];
 let wager = 0;
 let cash = 1000;
 let playerScore = 0;
 let dealerScore = 0;
 let playerDone = false;
+let dealerDone = false;
 
 /*----- cached element references -----*/
 
+const dealerScoreEl = document.getElementById('dealer-score');
+const playerScoreEl = document.getElementById('player-score');
 const dealerCardsEl = document.getElementById('dealer-cards');
 const playerCardsEl = document.getElementById('player-cards');
 const msgEl = document.getElementById('msg');
@@ -60,7 +62,6 @@ function shuffle() {
 }
 
 function deal() {
-    // Reminder, need to reshuffle deck
 
     dealer = [];
     player = [];
@@ -68,7 +69,7 @@ function deal() {
     dealer.push(deck.pop())
     player.push(deck.pop())
     player.push(deck.pop())
-    // check for blackjacks
+
     winner = checkForBlackjacks();
 }
 
@@ -86,8 +87,6 @@ function init() {
     render();
 }
 
-// init();
-
 function checkScore() {
     playerScore=0, dealerScore=0;
     for (let i = 0; i < player.length; i++) {
@@ -100,7 +99,12 @@ function checkScore() {
         document.getElementById('hit').removeEventListener('click', hit);
         document.getElementById('stand').removeEventListener('click', stay);
         document.getElementById('deal').removeEventListener('click', init);    
-        console.log('Running Checkscore, Player done');
+        checkWinner();
+    }
+    if(dealerDone || dealerScore >= 21) {
+        document.getElementById('hit').removeEventListener('click', hit);
+        document.getElementById('stand').removeEventListener('click', stay);
+        document.getElementById('deal').removeEventListener('click', init);    
         checkWinner();
     }
 }
@@ -131,7 +135,7 @@ function render() {
             } 
         }
 
-        c.className = `card ${player[i].Suit} ${currentValue}`
+        c.className = `card large ${player[i].Suit} ${currentValue}`
         playerCardsEl.appendChild(c) 
     }
     for (let i = 0; i < dealer.length; i++) {
@@ -150,7 +154,7 @@ function render() {
             } 
         }
 
-        c.className = `card ${dealer[i].Suit} ${currentValue}`
+        c.className = `card large ${dealer[i].Suit} ${currentValue}`
         dealerCardsEl.appendChild(c) 
     }
 }
@@ -195,7 +199,7 @@ function checkWinner() {
         msgEl.textContent = "Dealer Wins"
     }
     else if(playerScore > 21) {
-        msgEl.textContent = "Player Busts, Dealer Win"
+        msgEl.textContent = "Player Busts, Dealer Wins"
     }
     else if(dealerScore > 21) {
         msgEl.textContent = "Dealer Busts, Player Wins"
