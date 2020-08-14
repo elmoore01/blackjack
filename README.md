@@ -12,3 +12,17 @@ Luck is always very important, but the game also requires careful consideration 
 4. The dealer will reveal his hidden blackjack card and must always hit if they have 16 or lower. They will stop hitting if they have 17 or more.
 5. You win when the combined value of your cards is greater than that of the dealer.
 
+The technologies useed to create the BLACKJACK game include:
+
+1. HTML
+2. Javascript
+3. CSS
+4. Flexbox
+5. Grid
+
+GETTING STARTED:
+Please [click here](https://elmoore01.github.io/blackjack/) to visit my site and play the game.
+
+NEXT STEPS:
+For future versions, I will include the following features:
+
