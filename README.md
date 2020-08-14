@@ -14,7 +14,7 @@ Luck is always very important, but the game also requires careful consideration 
 
 ![](https://www.lifeprepacademy.org/wp-content/uploads/2020/08/BlackjackHand2.jpg)
 
-The technologies used to create our BLACKJACK game include:
+**TECHNOLOGIES USED:** The technologies used to create our BLACKJACK game include:
 
 1. HTML
 2. Javascript
@@ -22,10 +22,10 @@ The technologies used to create our BLACKJACK game include:
 4. Flexbox
 5. Grid
 
-GETTING STARTED:
+**GETTING STARTED:**
 Please [click here](https://elmoore01.github.io/blackjack/) to visit my site and play the game.
 
-NEXT STEPS:
+**NEXT STEPS:**
 For future versions, I will include the following features:
 
 1. Betting - Player will have the option of choosing an amount they'd like to bet ($5, $10, $25, $50 or $100).
