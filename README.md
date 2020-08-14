@@ -31,3 +31,5 @@ For future versions, I will include the following features:
 1. Betting - Player will have the option of choosing an amount they'd like to bet ($5, $10, $25, $50 or $100).
 2. Bankroll - Player will begin with $500. Gamblers like to see how much they've won over time.
 3. Buy More Chips - If the player has a losing streak and depletes their bankroll, they can purchase $500 in chips.
+
+Thank you for playing. Good luck!

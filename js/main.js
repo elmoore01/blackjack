@@ -34,7 +34,6 @@ document.getElementById('restart').addEventListener('click', init);
 
 /*----- functions -----*/
 
-
 function createDeck() {
     deck = new Array();
     for (let i = 0; i < values.length; i++) {
