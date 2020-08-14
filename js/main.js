@@ -174,16 +174,16 @@ function render() {
 function hit() {
     checkScore();
 
-    if (playerScore == 21) {
-        while (dealerScore < 16) {
-            dealer.push(deck.pop())
-            checkScore();
-        }
-        playerDone = true;
-        checkScore();
-    }
+    // if (playerScore <= 21) {
+    //     while (dealerScore < 16) {
+    //         dealer.push(deck.pop())
+    //         checkScore();
+    //     }
+    //     playerDone = true;
+    //     checkScore();
+    // }
    
-    if (playerScore >= 21) {   
+    if (playerScore > 21) {   
         playerDone = true;
 
     }
@@ -192,6 +192,7 @@ function hit() {
     }
 
     checkScore();
+    checkWinner();
     render();
 }
 
@@ -216,16 +217,16 @@ function checkWinner() {
     else if (dealerScore === 21) {
         msgEl.textContent = "Dealer Blackjack"
     }
-    else if (playerScore < 21 && dealerScore > 21 || (playerScore < 21 && playerScore > dealerScore)) {
-        msgEl.textContent = "Player Wins"
-    }
-    else if (dealerScore < 21 && playerScore > 21 || (dealerScore < 21 && dealerScore > playerScore)) {
-        msgEl.textContent = "Dealer Wins"
-    }
     else if (playerScore > 21) {
         msgEl.textContent = "Player Busts, Dealer Wins"
     }
     else if (dealerScore > 21) {
         msgEl.textContent = "Dealer Busts, Player Wins"
+    }
+    else if (playerScore < 21 && dealerScore > 21 || (playerScore < 21 && playerScore > dealerScore)) {
+        msgEl.textContent = "Player Wins"
+    }
+    else if (dealerScore < 21 && playerScore > 21 || (dealerScore < 21 && dealerScore > playerScore)) {
+        msgEl.textContent = "Dealer Wins"
     }
 }
