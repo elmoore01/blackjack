@@ -76,6 +76,7 @@ function deal() {
 function checkForBlackjacks() {
     return null;
 }
+
 function init() {
     playerDone = false;
     document.getElementById('hit').addEventListener('click', hit);
@@ -99,7 +100,7 @@ function checkScore() {
         dealerScore += dealer[i].Weight;
     }
     if (playerDone || (playerScore >= 21 && dealerDone)) {
-   
+
         document.getElementById('hit').removeEventListener('click', hit);
         document.getElementById('stand').removeEventListener('click', stay);
         document.getElementById('deal').removeEventListener('click', init);
@@ -174,23 +175,12 @@ function render() {
 function hit() {
     checkScore();
 
-    // if (playerScore <= 21) {
-    //     while (dealerScore < 16) {
-    //         dealer.push(deck.pop())
-    //         checkScore();
-    //     }
-    //     playerDone = true;
-    //     checkScore();
-    // }
-   
-    if (playerScore > 21) {   
+    if (playerScore > 21) {
         playerDone = true;
-
     }
     else {
         player.push(deck.pop())
     }
-
     checkScore();
     checkWinner();
     render();
@@ -200,9 +190,9 @@ function stay() {
     while (dealerScore < 16) {
         dealer.push(deck.pop())
         checkScore();
+        checkWinner();
     }
     playerDone = true;
-
     render();
 }
 
