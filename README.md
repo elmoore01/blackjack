@@ -14,13 +14,11 @@ Luck is always very important, but the game also requires careful consideration 
 
 ![](https://www.lifeprepacademy.org/wp-content/uploads/2020/08/BlackjackHand2.jpg)
 
-**TECHNOLOGIES USED:** The technologies used to create our BLACKJACK game include:
+**TECHNOLOGIES:** The technologies used to create our BLACKJACK game include:
 
 1. HTML
 2. Javascript
 3. CSS
-4. Flexbox
-5. Grid
 
 **GETTING STARTED:**
 Please [click here](https://elmoore01.github.io/blackjack/) to visit my site and play the game.
