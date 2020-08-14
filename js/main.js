@@ -99,6 +99,7 @@ function checkScore() {
         dealerScore += dealer[i].Weight;
     }
     if (playerDone || (playerScore >= 21 && dealerDone)) {
+   
         document.getElementById('hit').removeEventListener('click', hit);
         document.getElementById('stand').removeEventListener('click', stay);
         document.getElementById('deal').removeEventListener('click', init);
@@ -172,21 +173,25 @@ function render() {
 
 function hit() {
     checkScore();
+
     if (playerScore == 21) {
         while (dealerScore < 16) {
             dealer.push(deck.pop())
             checkScore();
         }
-        dealerDone = true;
+        playerDone = true;
         checkScore();
     }
-    if (playerScore >= 21) {
-
+   
+    if (playerScore >= 21) {   
         playerDone = true;
+
     }
     else {
         player.push(deck.pop())
     }
+
+    checkScore();
     render();
 }
 
@@ -205,16 +210,16 @@ function checkWinner() {
     if (playerScore === dealerScore) {
         msgEl.textContent = "It's a Tie"
     }
-    else if (playerScore === 21 && playerCardsEl.length < 3) {
+    else if (playerScore === 21) {
         msgEl.textContent = "Player Blackjack"
     }
-    else if (dealerScore === 21 && dealerCardsEl.length < 3) {
+    else if (dealerScore === 21) {
         msgEl.textContent = "Dealer Blackjack"
     }
-    else if (playerScore <= 21 && dealerScore > 21 || (playerScore <= 21 && playerScore > dealerScore)) {
+    else if (playerScore < 21 && dealerScore > 21 || (playerScore < 21 && playerScore > dealerScore)) {
         msgEl.textContent = "Player Wins"
     }
-    else if (dealerScore <= 21 && playerScore > 21 || (dealerScore <= 21 && dealerScore > playerScore)) {
+    else if (dealerScore < 21 && playerScore > 21 || (dealerScore < 21 && dealerScore > playerScore)) {
         msgEl.textContent = "Dealer Wins"
     }
     else if (playerScore > 21) {
