@@ -12,7 +12,7 @@ Luck is always very important, but the game also requires careful consideration 
 4. The dealer will reveal his hidden blackjack card and must always hit if they have 16 or lower. They will stop hitting if they have 17 or more.
 5. You win when the combined value of your cards is greater than that of the dealer.
 
-![](https://www.lifeprepacademy.org/wp-content/uploads/2020/08/BlackjackHand.jpg)
+![](https://www.lifeprepacademy.org/wp-content/uploads/2020/08/BlackjackHand2.jpg)
 
 The technologies used to create our BLACKJACK game include:
 
